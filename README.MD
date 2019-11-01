@@ -13,4 +13,7 @@
 * As a user, I want easy to use inputs, because I don't time to      learn a complicated system.
 * As a user, I want to see a score or time, because I'm              competitive.
 
-☐ Next Steps: make the game
+☐ Next Steps: Make level 1:
+    what is the win condition: output quality > 95% && rate > 70%
+    what is the event? heat is limited to 60% due to supply disruption
+    what is the output quality? need a display
