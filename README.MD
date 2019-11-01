@@ -1,7 +1,7 @@
 ☐ This is a game about refining one chemical into another, by maintaining equilibrium.
 
 ☐ Screenshot(s): ![alt text](https://i.imgur.com/ZKSyg2J.jpg "Under Pressure Simulator")
-[alt text](https://i.imgur.com/UZafEGX.png "Level 1 Mock Up")
+![alt text](https://i.imgur.com/UZafEGX.png "Level 1 Mock Up")
 
 ☐ Technologies Used: JavaScript, HTML, and CSS
 
