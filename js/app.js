@@ -2,7 +2,7 @@
 const InputChem1 = {};
 
 /*----- app's state (variables) -----*/
-let createdInputVessels = {};
+let createdInputVessels = [];
 
 /*----- cached element references -----*/
 let stage = document.getElementById('stage');
@@ -14,18 +14,22 @@ let inputs = document.getElementById('inputs')
 /*----- functions -----*/
 let inputVessel = function(num) {
     for(i=0; i<num; i++) {
-        createdInputVessels = i[document.createElement("div")];
-        createdInputVessels[i].classList.add('inputVessel')
+        let divNew = document.createElement("div")
+        divNew.classList.add('inputVessel');
+        inputs.append(divNew);
     }
-    inputs.appendChild(createdInputVessels)
 }
-
+// inputs.append(document.createElement("div"));
 
 /*---model/data---*/
 
 
 /*---controller---*/
-
+function init () {
+    inputVessel(2);
+}
 
 /*---ui controller---*/
 //generate level 1
+
+init();

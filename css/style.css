@@ -1,0 +1,19 @@
+body {
+    text-align: center;
+}
+#stage {
+    display: flex;
+    width: 1fr 1fr 1fr;
+
+
+}
+#inputs{
+    display: flex;
+    width: 1fr;
+        
+}
+.inputVessel {
+    background-color: grey;
+    height: 300px;
+    width: 125px;
+}
