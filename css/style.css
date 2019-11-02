@@ -2,30 +2,40 @@ body {
     text-align: center;
     background-color: darkslategrey;
 }
-#stage {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(84, 84, 108)
-
-
+.container {
+    display: grid;
+    height: 90vh;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 60px 375px 100px;
+    background-color: rgb(84, 84, 108);
+    justify-content: center;
 }
 #inputs{
-    display: flex;
-    width: 33%;
+    grid-column: 1/2;
+    grid-row: 1/2;
 }
 #processes {
-    display: flex;
-    width: 33%;
+    grid-column: 2/3;
+    grid-row: 1/2;
 }
 #outputs {
-    display: flex;
-    width: 33%;
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+.inputVessel{
+    grid-column: 1/2;
+}
+.processVessel{
+    grid-column: 2/3;
+}
+.outputVessel{
+    grid-column: 3/4;
 }
 .inputVessel, .processVessel, .outputVessel {
-    justify-content: center;
+    align-items: space-around;
+    grid-row: 2/3;
     background-color: grey;
-    height: 300px;
+    height: 80%;
     width: 90px;
     padding: 0px;
     margin: 12px;
@@ -46,3 +56,33 @@ width: 20px;
       margin-right: 20px;
       float: left;
 } 
+.pump, .burner {
+    grid-row: 3/4;
+    justify-content: space-around;
+    padding: 0px;
+    margin: 12px;
+    border: 2px solid black;
+}
+.pump {
+    width: 90px;
+    height: 70px;
+    content: url('/assets/Centrifugal_Pump.jpg');
+}
+.burner {
+    width: 90px;
+    height: 70px;
+    grid-column: 2/3;
+    justify-content: space-around;
+    align-items: center;
+    content: url('/assets/flame\ gif.gif')
+}
+.pump0 {
+    grid-column: 1/2;
+}
+.outPump0 {
+    grid-column: 3/4;
+}
+/* .burner0 {
+    grid-column: 2/3;
+    grid-row: 2/3;
+} */
