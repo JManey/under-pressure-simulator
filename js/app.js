@@ -4,6 +4,7 @@ const InputChem1 = {};
 /*----- app's state (variables) -----*/
 let createdInputVessels = [];
 let currentLevel = 1;
+let newGasRat = null;
 
 /*----- cached element references -----*/
 let stage = document.getElementById('stage');
@@ -14,12 +15,6 @@ let controls = document.getElementById('controls');
 let pump0 = document.getElementById('pump0');
 let burner0 = document.getElementById('burner0');
 // let outPump0 = document.getElementById('outPump0');
-
-/*----- event listeners -----*/
-//input for burner0 temp
-burner0.addEventListener('click', adjustTemp());
-//input for flow rate
-pump0.addEventListener('click', adjustPump());
 
 /*----- functions -----*/
 function createVessel(num,type){
@@ -35,6 +30,7 @@ function createVessel(num,type){
                 divNew.append(progressNew);
                 let pump = document.createElement('div');
                 pump.classList.add('pump'+i, 'pump');
+                pump.id = 'pump' + i;
                 stage.append(pump);
                 break;
             case 'processVessel':
@@ -43,6 +39,7 @@ function createVessel(num,type){
                 divNew.append(progressNew);
                 let burner = document.createElement('div');
                 burner.classList.add('burner'+i, 'burner');
+                burner.id = 'burner' + i;
                 stage.append(burner);
                 break;
             case 'outputVessel':
@@ -51,12 +48,17 @@ function createVessel(num,type){
                 divNew.append(progressNew);
                 let outPump = document.createElement('div');
                 outPump.classList.add('outPump'+i, 'pump');
+                outPump.id = 'outPump' + i;
                 stage.append(outPump);
                 break;
         }
     }
 }
 
+function adjustTemp(){
+    let newGasRate = prompt('Enter the gas flow rate, 0% to 100%', [50]);
+    return newGasRate;
+}
 //negative event 1 gas restriction causes process temp to fall
 //player needs to decrease rate to maintain temp and output quality
 function event1() {
@@ -99,3 +101,16 @@ function init () {
 //generate level 1
 
 init(currentLevel);
+
+
+/*----- event listeners -----*/
+//input for burner0 temp
+stage.addEventListener('click', function(event){
+    // console.log(event.target.id);
+    if(event.target.id === 'burner0') {
+        adjustTemp();
+    }
+
+});
+//input for flow rate
+// pump0.addEventListener('click', adjustPump());
