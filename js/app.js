@@ -138,38 +138,51 @@ window.onload = function () {
         title :{
             text: "Current Production"
         },
-        axisY: [{
+        
+        axisY: [
+            {
+            title: 'Temperature',
+            titleFontColor: 'red',
+            labelFontColor: 'red',
             includeZero: true,
-            title: 'Temperature'
-        },
-        {
+            },
+            {
+            tite: 'Rate in GPM',
+            labelFontColor: 'blue',
+            titleFontColor: 'blue',
             includeZero: true,
-            tite: 'Rate in GPM'
-        }],
-        axisY2: {
-            includeZero: true,
-            title: 'Quality'
-        }      
+            }
+        ],
         data: [
-        {
+            {
+            type: "line",
+            axisYIndex: 0,
             lineColor: "red",
             markerColor: "red",
+            dataPoints: dps,
+            },
+            {
             type: "line",
-            dataPoints: dps
-        }, 
-         {
+            axisYIndex: 1,
             lineColor: "blue",
             markerColor: "blue",
-            type: "line",
-            dataPoints: dpsPump
-         },
+            dataPoints: dpsPump,
+            },
+        ], 
+        axisY2: [{
+            title: 'Quality',
+            includeZero: true,
+        }], 
+        data: [      
          {
+            type: "line",
+            axisYType: 'secondary',
             lineColor: "green",
             markerColor: "green",
-            type: "line",
-            dataPoints: dpsQuality 
-         }
-    ]
+            dataPoints: dpsQuality,
+         }],
+        
+    
     });
     
     var xVal = 0;

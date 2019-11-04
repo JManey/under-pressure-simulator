@@ -8,9 +8,9 @@ body {
 .container {
     display: grid;
     height: 85vh;
+    /* width: 80%; */
     grid-template-columns:  1fr 1fr 1fr;
     grid-template-rows: .3fr 2fr .5fr 1fr;
-    background-color: rgba(84, 84, 108, .0);
     justify-content: space-around;
     opacity: 100%; 
 }
