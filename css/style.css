@@ -1,26 +1,38 @@
 body {
+    /* height: 100vh; */
     text-align: center;
-    background-color: darkslategrey;
-}
+    /* background-color: darkslategrey; */
+    background: url(/assets/refinery\ image.jpg) no-repeat;
+    background-size: cover;
+    }
 .container {
     display: grid;
-    height: 90vh;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 60px 375px 100px;
-    background-color: rgb(84, 84, 108);
+    height: 85vh;
+    grid-template-columns:  1fr 1fr 1fr;
+    grid-template-rows: .3fr 2fr 2fr .3fr;
+    background-color: rgba(84, 84, 108, .0);
     justify-content: space-around;
+    opacity: 80%; 
+}
+h4 {
+    grid-column: 1/4;
+    grid-row: 1/2;
+}
+h5 {
+    grid-column: 1/4;
+    grid-row: 2/3;
 }
 #inputs{
     grid-column: 1/2;
-    grid-row: 1/2;
+    grid-row: 3/4;
 }
 #processes {
     grid-column: 2/3;
-    grid-row: 1/2;
+    grid-row: 3/4;
 }
 #outputs {
     grid-column: 3/4;
-    grid-row: 1/2;
+    grid-row: 3/4;
 }
 .inputVessel{
     grid-column: 1/2;
@@ -36,12 +48,12 @@ body {
     content: url(/assets/vertical\ storage.jpg)
 }
 .coolers{
-    justify-self: flex-end;
+    justify-self: end;
     content: url(/assets/vertical-refining-tower-blue-sky-oil-refinery-industrial-plant-summer-season-47133629.jpg)
 }
 .inputVessel, .processVessel, .outputVessel {
     /* justify-self: center; */
-    grid-row: 2/3;
+    grid-row: 3/4;
     background-color: grey;
     height: 80%;
     width: 60px;
@@ -55,7 +67,7 @@ body {
     width: 110px;
 }
 .pump, .burner {
-    grid-row: 3/4;
+    grid-row: 4/5;
     padding: 0px;
     border: 2px solid black;
 }
