@@ -1,4 +1,5 @@
 /*----- constants -----*/
+// var Chart = require('chart.js');
 const InputChem1 = {};
 const winQuality = 90;
 const tempGradient = .58;
@@ -23,6 +24,8 @@ let outputVessel = document.getElementById('output0');
 let controls = document.getElementById('controls');
 let pump0 = document.getElementById('pump0');
 let burner0 = document.getElementById('burner0');
+let chart1 = document.querySelector('h5');
+
 // let outPump0 = document.getElementById('outPump0');
 
 /*----- event listeners -----*/
@@ -86,6 +89,7 @@ function event1() {
 }
 /*---model/data---*/
 function level1 () {
+    checkQuality();
     // createVessel(1, 'inputVessel');
     // createVessel(1, 'processVessel');
     // createVessel(1, 'outputVessel');
@@ -124,9 +128,108 @@ function checkQualityForWin() {
     }   else return alert(`Keep trying current quality is ${quality}`);
 }
 
+//////////////add a dynamic chart
+window.onload = function () {
+
+    var dps = []; // dataPoints
+    var dpsPump = []; // pumpDataPoints
+    var dpsQuality = []; 
+    var chart = new CanvasJS.Chart("chartContainer", {
+        title :{
+            text: "Current Production"
+        },
+        axisY: [{
+            includeZero: true,
+            title: 'Temperature'
+        },
+        {
+            includeZero: true,
+            tite: 'Rate in GPM'
+        }],
+        axisY2: {
+            includeZero: true,
+            title: 'Quality'
+        }      
+        data: [
+        {
+            lineColor: "red",
+            markerColor: "red",
+            type: "line",
+            dataPoints: dps
+        }, 
+         {
+            lineColor: "blue",
+            markerColor: "blue",
+            type: "line",
+            dataPoints: dpsPump
+         },
+         {
+            lineColor: "green",
+            markerColor: "green",
+            type: "line",
+            dataPoints: dpsQuality 
+         }
+    ]
+    });
+    
+    var xVal = 0;
+    var yVal = 100; 
+    var updateInterval = 2000;
+    var dataLength = 20; // number of dataPoints visible at any point
+    
+    var updateChart = function (count) {
+    
+        count = count || 1;
+    
+        for (var j = 0; j < count; j++) {
+            yVal = currentTemp;
+            dps.push({
+                x: xVal,
+                y: yVal
+            });
+            xVal++;
+        }
+    
+        if (dps.length > dataLength) {
+            dps.shift();
+        }
+        for (var j = 0; j < count; j++) {
+            yVal = fluidRate;
+            dpsPump.push({
+                x: xVal,
+                y: yVal
+            });
+            xVal++;
+        }
+        if (dpsPump.length > dataLength) {
+            dpsPump.shift();
+        }
+        for (var j = 0; j < count; j++) {
+            yVal = quality;
+            dpsQuality.push({
+                x: xVal,
+                y: yVal
+            });
+            xVal++;
+        }
+        if (dpsQuality.length > dataLength) {
+            dpsQuality.shift();
+        }
+    
+        chart.render();
+    };
+    
+    updateChart(dataLength);
+    setInterval(function(){updateChart()}, updateInterval);
+    
+    }
+
+//////////////end chart stuff
+
 /*---controller---*/
 function init () {
     level1();
+    // generateChart();
 }
 // setInterval(checkQualityForWin, 1000 * 20);
 

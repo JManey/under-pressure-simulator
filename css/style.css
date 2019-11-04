@@ -2,17 +2,17 @@ body {
     /* height: 100vh; */
     text-align: center;
     /* background-color: darkslategrey; */
-    background: url(/assets/refinery\ image.jpg) no-repeat;
+    background: url(/assets/stock-photo-oil-refinery-factory-at-twilight-chao-phraya-river-in-bangkok-thailand-hdr-images-184698878.jpg) no-repeat;
     background-size: cover;
     }
 .container {
     display: grid;
     height: 85vh;
     grid-template-columns:  1fr 1fr 1fr;
-    grid-template-rows: .3fr 2fr 2fr .3fr;
+    grid-template-rows: .3fr 2fr .5fr 1fr;
     background-color: rgba(84, 84, 108, .0);
     justify-content: space-around;
-    opacity: 80%; 
+    opacity: 100%; 
 }
 h4 {
     grid-column: 1/4;
@@ -21,6 +21,10 @@ h4 {
 h5 {
     grid-column: 1/4;
     grid-row: 2/3;
+    justify-self: center;
+    height: 60vh;
+    width: 90%;
+    background-color: darkslategray;
 }
 #inputs{
     grid-column: 1/2;
@@ -66,29 +70,18 @@ h5 {
     justify-self: center;
     width: 110px;
 }
-.pump, .burner {
+.buttons {
+    grid-column: 1/4;
     grid-row: 4/5;
-    padding: 0px;
-    border: 2px solid black;
+    justify-content: space-around;
 }
-.pump {
+button {
+    height: 60px;
     width: 90px;
-    height: 80px;
-    margin: 0px;
-    content: url('/assets/Centrifugal_Pump.jpg');
+    padding: 10px;
+    margin: 5px 20px;
+    border: 4px solid black;
+    box-shadow: gold 3px;
 }
-.burner {
-    width: 70px;
-    height: 80px;
-    grid-column: 2/3;
-    margin: 0px;
-    margin-left: 26px;
-    content: url('/assets/flame\ gif.gif')
-}
-#pump0 {
-    grid-column: 1/2;
-    margin-left: 106px;
-}
-#outPump0 {
-    grid-column: 3/4;
+
 }
