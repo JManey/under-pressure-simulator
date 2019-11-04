@@ -22,7 +22,7 @@ h5 {
     grid-column: 1/4;
     grid-row: 2/3;
     justify-self: center;
-    height: 60vh;
+    height: 40vh;
     width: 90%;
     background-color: darkslategray;
 }
@@ -84,4 +84,3 @@ button {
     box-shadow: gold 3px;
 }
 
-}

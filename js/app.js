@@ -147,11 +147,11 @@ window.onload = function () {
             includeZero: true,
             },
             {
-            tite: 'Rate in GPM',
+            title: 'Rate in GPM',
             labelFontColor: 'blue',
             titleFontColor: 'blue',
             includeZero: true,
-            }
+            },
         ],
         data: [
             {
@@ -168,19 +168,26 @@ window.onload = function () {
             markerColor: "blue",
             dataPoints: dpsPump,
             },
+            {
+                    type: "line",
+                    axisYType: 'secondary',
+                    lineColor: "green",
+                    markerColor: "green",
+                    dataPoints: dpsQuality,
+                 },
         ], 
         axisY2: [{
             title: 'Quality',
             includeZero: true,
         }], 
-        data: [      
-         {
-            type: "line",
-            axisYType: 'secondary',
-            lineColor: "green",
-            markerColor: "green",
-            dataPoints: dpsQuality,
-         }],
+        // data: [      
+        //  {
+        //     type: "line",
+        //     axisYType: 'secondary',
+        //     lineColor: "green",
+        //     markerColor: "green",
+        //     dataPoints: dpsQuality,
+        //  }],
         
     
     });
