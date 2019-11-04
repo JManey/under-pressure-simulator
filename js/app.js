@@ -1,35 +1,81 @@
 /*----- constants -----*/
 const InputChem1 = {};
 const winQuality = 90;
+const tempGradient = .58;
 
 /*----- app's state (variables) -----*/
 let createdInputVessels = [];
 let currentLevel = 1;
-let newGasRate = null;
-let newFluidRate = null;
+let newGasRate = 40;
+let newFluidPercent = 40;
+let fluidRate = newFluidPercent / 100 * 252;
 let maxGasRate = 100;
 let maxFluidRate = 100;
-let quality = level1Quality();
+let quality = null;
+let fluidTemp = tempGradient * (fluidRate / 100 * 252);
+let currentTemp = ((newGasRate / 100 * 600) - ((1 - tempGradient)) * fluidTemp);
 
 /*----- cached element references -----*/
 let stage = document.getElementById('stage');
 let inputVessel = document.getElementById('inputs');
 let processVessel = document.getElementById('processes');
-let outputVessel = document.getElementById('outputs');
+let outputVessel = document.getElementById('output0');
 let controls = document.getElementById('controls');
 let pump0 = document.getElementById('pump0');
 let burner0 = document.getElementById('burner0');
 // let outPump0 = document.getElementById('outPump0');
 
+/*----- event listeners -----*/
+//input for burner0 temp
+stage.addEventListener('click', function(event){
+    // console.log(event.target.id);
+    if(event.target.id === 'burner0') {
+        adjustTemp();
+    }
+});
+//input for flow rate
+stage.addEventListener('click', function(event){
+    // console.log(event.target.id);
+    if(event.target.id === 'pump0') {
+        adjustRate();
+        updateTemps();
+        // console.log(newFluidRate);
+    }
+});
+stage.addEventListener('click', function(event) {
+    if(event.target.id === 'output0') {
+    updateTemps();
+    level1Quality();
+    alert(`Current output quality is: ${quality}`);
+    }
+});
+stage.addEventListener('click', function(event) {
+    if(event.target.id === 'input0') {
+    updateTemps();
+    level1Quality();
+    alert(`Current input rate is: ${fluidRate} gpm`);
+    }
+});
+stage.addEventListener('click', function(event) {
+    if(event.target.id === 'burner') {
+        currentTemp = ((newGasRate / 100 * 600) - ((1 - tempGradient)) * fluidTemp);
+        updateTemps();
+    alert(`Current heater temperature is ${currentTemp} degrees F.`);
+    }
+});
+
 /*----- functions -----*/
 
 function adjustTemp(){
-    newGasRate = parseInt(prompt('Enter the gas flow rate, 0% to 100%', [50]));
+    newGasRate = parseInt(prompt(`Current gas flow rate ${newGasRate}%, enter desired gas rate from 1% to 100%`));
+    updateTemps();
     return newGasRate;
 }
 function adjustRate(){
-    newFluidRate = parseInt(prompt('Enter the fluid flow rate, 0% to 100%', [50]));
-    return newFluidRate;
+    newFluidPercent = parseInt(prompt(`Current pump output ${newFluidPercent}%, enter desired pump output from 1% to 100%`));
+    fluidRate = newFluidPercent / 100 * 252;
+    updateTemps();
+    return newFluidPercent;
 }
 
 //negative event 1 gas restriction causes process temp to fall
@@ -63,8 +109,13 @@ function level2 () {
     createVessel(2, 'processVessel');
     createVessel(1, 'outputVessel');
 }
+function updateTemps() {
+    fluidTemp = tempGradient * (fluidRate / 100 * 252);
+    currentTemp = ((newGasRate / 100 * 600) - ((1 - tempGradient)) * fluidTemp);
+}
 function level1Quality(){
-    let quality = (newGasRate * .4) + (newFluidRate * .6);
+    //temp should stay between 280 - 300 degrees
+    quality = (newGasRate * .4) + (fluidRate * .6);
     return quality;
 }
 function checkQualityForWin() {
@@ -83,21 +134,3 @@ function init () {
 //generate level 1
 
 init(currentLevel);
-
-
-/*----- event listeners -----*/
-//input for burner0 temp
-stage.addEventListener('click', function(event){
-    // console.log(event.target.id);
-    if(event.target.id === 'burner0') {
-        adjustTemp();
-    }
-});
-//input for flow rate
-stage.addEventListener('click', function(event){
-    // console.log(event.target.id);
-    if(event.target.id === 'pump0') {
-        adjustRate();
-        // console.log(newFluidRate);
-    }
-});
