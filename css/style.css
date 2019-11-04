@@ -24,16 +24,20 @@ body {
 }
 .inputVessel{
     grid-column: 1/2;
+    content: url(/assets/crude-oil-surge-tank-vertical-asme-viii-div-1-100bbl.jpg);
 }
 .processVessel{
     margin-left: auto;
     grid-column: 2/3;
+    content: url(/assets/industrial\ gif.gif)
 }
 .outputVessel{
     grid-column: 3/4;
+    content: url(/assets/vertical\ storage.jpg)
 }
 .coolers{
     justify-self: flex-end;
+    content: url(/assets/vertical-refining-tower-blue-sky-oil-refinery-industrial-plant-summer-season-47133629.jpg)
 }
 .inputVessel, .processVessel, .outputVessel {
     /* justify-self: center; */

@@ -45,14 +45,14 @@ stage.addEventListener('click', function(event){
 stage.addEventListener('click', function(event) {
     if(event.target.id === 'output0') {
     updateTemps();
-    level1Quality();
-    alert(`Current output quality is: ${quality}`);
+    checkQuality();
+    alert(`Current output quality is: ${quality}%.`);
     }
 });
 stage.addEventListener('click', function(event) {
     if(event.target.id === 'input0') {
     updateTemps();
-    level1Quality();
+    checkQuality();
     alert(`Current input rate is: ${fluidRate} gpm`);
     }
 });
@@ -113,7 +113,7 @@ function updateTemps() {
     fluidTemp = tempGradient * (fluidRate / 100 * 252);
     currentTemp = ((newGasRate / 100 * 600) - ((1 - tempGradient)) * fluidTemp);
 }
-function level1Quality(){
+function checkQuality(){
     //temp should stay between 280 - 300 degrees
     quality = (newGasRate * .4) + (fluidRate * .6);
     return quality;
