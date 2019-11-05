@@ -1,8 +1,8 @@
 /*----- constants -----*/
 // var Chart = require('chart.js');
 const InputChem1 = {};
-const winQuality = 90;
-const tempGradient = .58;
+const winQuality = 95;
+const tempGradient = .48;
 
 /*----- app's state (variables) -----*/
 let createdInputVessels = [];
@@ -34,6 +34,8 @@ stage.addEventListener('click', function(event){
     // console.log(event.target.id);
     if(event.target.id === 'burner0') {
         adjustTemp();
+        updateTemps();
+        checkQuality();
     }
 });
 //input for flow rate
@@ -42,42 +44,42 @@ stage.addEventListener('click', function(event){
     if(event.target.id === 'pump0') {
         adjustRate();
         updateTemps();
+        checkQuality();
         // console.log(newFluidRate);
     }
 });
-stage.addEventListener('click', function(event) {
-    if(event.target.id === 'output0') {
-    updateTemps();
-    checkQuality();
-    alert(`Current output quality is: ${quality}%.`);
-    }
-});
-stage.addEventListener('click', function(event) {
-    if(event.target.id === 'input0') {
-    updateTemps();
-    checkQuality();
-    alert(`Current input rate is: ${fluidRate} gpm`);
-    }
-});
-stage.addEventListener('click', function(event) {
-    if(event.target.id === 'burner') {
-        currentTemp = ((newGasRate / 100 * 600) - ((1 - tempGradient)) * fluidTemp);
-        updateTemps();
-    alert(`Current heater temperature is ${currentTemp} degrees F.`);
-    }
-});
+// stage.addEventListener('click', function(event) {
+//     if(event.target.id === 'output0') {
+//     updateTemps();
+//     checkQuality();
+//     }
+// });
+// stage.addEventListener('click', function(event) {
+//     if(event.target.id === 'input0') {
+//     updateTemps();
+//     checkQuality();
+//     }
+// });
+// stage.addEventListener('click', function(event) {
+//     if(event.target.id === 'burner') {
+//         adjustTemp();
+//         updateTemps();
+//     }
+// });
 
 /*----- functions -----*/
 
 function adjustTemp(){
-    newGasRate = parseInt(prompt(`Current gas flow rate ${newGasRate}%, enter desired gas rate from 1% to 100%`));
+    newGasRate = parseInt(burner0.value);
     updateTemps();
+    checkQuality();
     return newGasRate;
 }
 function adjustRate(){
-    newFluidPercent = parseInt(prompt(`Current pump output ${newFluidPercent}%, enter desired pump output from 1% to 100%`));
+    newFluidPercent = parseInt(pump0.value);
     fluidRate = newFluidPercent / 100 * 252;
     updateTemps();
+    checkQuality();
     return newFluidPercent;
 }
 
@@ -87,50 +89,48 @@ function event1() {
     if(newGasRate > 60) {newGasRate = 60;}
     let maxGasRate = 60;
 }
+
+function navBars() {
+   let navBar = document.createElement('nav')
+   let homeButton = document.createElement('a');
+   navBar.appendChild(homeButton);
+   body.appendChild('navBar');
+}
+
+
 /*---model/data---*/
 function level1 () {
     checkQuality();
-    // createVessel(1, 'inputVessel');
-    // createVessel(1, 'processVessel');
-    // createVessel(1, 'outputVessel');
-    // //initiate level paramenters
-    // //flow rate(input & output) = gpm, starting temp = degrees F  
-    //     newFlowRate = 40;
-    //     newGasRate = 44;
-    //call negative event function
-        //level1 event heating gas shortage
-        // after 10 seconds => console.log('Oh no the heating gas pressure dropped, the max heat is limited to 60%.')
-        //player needs to reduce the rate to maintain the process temp or the output quality will decrease
-        //ideal temp = 143
-        //ideal input = 147
-        //ideal output 115
-        //after event temp decreases to 112 over 9 sec
-        //quality will decrease by a % with the temp change.
-
+   
 }
 function level2 () {
-    createVessel(1, 'inputVessel');
-    createVessel(2, 'processVessel');
-    createVessel(1, 'outputVessel');
+    // createVessel(1, 'inputVessel');
+    // createVessel(2, 'processVessel');
+    // createVessel(1, 'outputVessel');
 }
 function updateTemps() {
     fluidTemp = tempGradient * (fluidRate / 100 * 252);
-    currentTemp = ((newGasRate / 100 * 600) - ((1 - tempGradient)) * fluidTemp);
+    currentTemp = ((newGasRate / 100 * 400) - ((1 - tempGradient)) * fluidTemp);
+    return fluidTemp;
 }
 function checkQuality(){
-    //temp should stay between 280 - 300 degrees
-    quality = (newGasRate * .4) + (fluidRate * .6);
+    if(currentTemp > 140 && currentTemp < 160) {
+        quality = 100 - Math.abs(currentTemp-150);
+    } else {
+        quality = 100 - 10 - currentTemp * .3;
+    }
+    checkQualityForWin();
     return quality;
 }
 function checkQualityForWin() {
-    if(level1Quality() >= winQuality){
+    if(quality >= winQuality){
         return alert('game is won');
-    }   else return alert(`Keep trying current quality is ${quality}`);
+    }   else return;
 }
 
 //////////////add a dynamic chart
+//start when page loads
 window.onload = function () {
-
     var dps = []; // dataPoints
     var dpsPump = []; // pumpDataPoints
     var dpsQuality = []; 
@@ -247,8 +247,8 @@ window.onload = function () {
 //////////////end chart stuff
 
 /*---controller---*/
-function init () {
-    level1();
+function init() {
+    navBars();
     // generateChart();
 }
 // setInterval(checkQualityForWin, 1000 * 20);
@@ -256,4 +256,4 @@ function init () {
 /*---ui controller---*/
 //generate level 1
 
-init(currentLevel);
+init();
