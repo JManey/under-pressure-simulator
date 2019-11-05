@@ -30,6 +30,10 @@ let chart1 = document.querySelector('h5');
 
 /*----- event listeners -----*/
 //input for burner0 temp
+window.addEventListener('click', function(event){
+    if(event.target.id === 'mainButtons')
+    level1();
+})
 stage.addEventListener('click', function(event){
     // console.log(event.target.id);
     if(event.target.id === 'burner0') {
@@ -48,34 +52,17 @@ stage.addEventListener('click', function(event){
         // console.log(newFluidRate);
     }
 });
-// stage.addEventListener('click', function(event) {
-//     if(event.target.id === 'output0') {
-//     updateTemps();
-//     checkQuality();
-//     }
-// });
-// stage.addEventListener('click', function(event) {
-//     if(event.target.id === 'input0') {
-//     updateTemps();
-//     checkQuality();
-//     }
-// });
-// stage.addEventListener('click', function(event) {
-//     if(event.target.id === 'burner') {
-//         adjustTemp();
-//         updateTemps();
-//     }
-// });
+
 
 /*----- functions -----*/
 
-function adjustTemp(){
+function adjustTemp() {
     newGasRate = parseInt(burner0.value);
     updateTemps();
     checkQuality();
     return newGasRate;
 }
-function adjustRate(){
+function adjustRate() {
     newFluidPercent = parseInt(pump0.value);
     fluidRate = newFluidPercent / 100 * 252;
     updateTemps();
@@ -83,30 +70,31 @@ function adjustRate(){
     return newFluidPercent;
 }
 
-//negative event 1 gas restriction causes process temp to fall
-//player needs to decrease rate to maintain temp and output quality
-function event1() {
-    if(newGasRate > 60) {newGasRate = 60;}
-    let maxGasRate = 60;
-}
+// function event1() {
+//     if(newGasRate > 60) {newGasRate = 60;}
+//     let maxGasRate = 60;
+// }
 
 function navBars() {
    let navBar = document.createElement('nav')
    let homeButton = document.createElement('a');
    navBar.appendChild(homeButton);
-   body.appendChild('navBar');
+   document.body.prepend('navBar');
 }
 
 
 /*---model/data---*/
 function level1 () {
+    navBars();
+    level1Chart();
     checkQuality();
+   
    
 }
 function level2 () {
-    // createVessel(1, 'inputVessel');
-    // createVessel(2, 'processVessel');
-    // createVessel(1, 'outputVessel');
+    navBars();
+    checkQualityLvl2();
+    level2Chart();
 }
 function updateTemps() {
     fluidTemp = tempGradient * (fluidRate / 100 * 252);
@@ -130,6 +118,7 @@ function checkQualityForWin() {
 
 //////////////add a dynamic chart
 //start when page loads
+function level1Chart() {
 window.onload = function () {
     var dps = []; // dataPoints
     var dpsPump = []; // pumpDataPoints
@@ -243,17 +232,24 @@ window.onload = function () {
     setInterval(function(){updateChart()}, updateInterval);
     
     }
-
+}
 //////////////end chart stuff
 
 /*---controller---*/
-function init() {
-    navBars();
-    // generateChart();
+function init(num) {
+    if(num === 1){
+        level1();
+    } else if(num === 2) {
+        level2();
+    } else return;
+    
 }
+window.onload = navBars();
 // setInterval(checkQualityForWin, 1000 * 20);
 
 /*---ui controller---*/
 //generate level 1
 
 init();
+level1();
+level1Chart();

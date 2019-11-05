@@ -57,37 +57,12 @@ h5 {
     grid-column: 3/4;
     grid-row: 3/4;
 }
-.inputVessel{
-    grid-column: 1/2;
-    content: url(/assets/crude-oil-surge-tank-vertical-asme-viii-div-1-100bbl.jpg);
-}
-.processVessel{
-    margin-left: auto;
-    grid-column: 2/3;
-    content: url(/assets/industrial\ gif.gif)
-}
-.outputVessel{
-    grid-column: 3/4;
-    content: url(/assets/vertical\ storage.jpg)
-}
-.coolers{
-    justify-self: end;
-    content: url(/assets/vertical-refining-tower-blue-sky-oil-refinery-industrial-plant-summer-season-47133629.jpg)
-}
-.inputVessel, .processVessel, .outputVessel {
-    /* justify-self: center; */
-    grid-row: 3/4;
-    background-color: grey;
-    height: 80%;
-    width: 60px;
-    padding: 0px;
-    margin: 30px;
-    margin-bottom: 0px;
-    border: 2px solid black;
-}
-#input0, #output0{
+
+
+
+/* #input0, #output0{
     justify-self: center;
-    width: 110px;
+    width: 110px; */
 }
 
 input {
