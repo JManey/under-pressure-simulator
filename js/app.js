@@ -129,6 +129,7 @@ window.onload = function () {
         title :{
             text: "Current Production"
         },
+        backgroundColor: 'rgba(111,106,106,.2)',
         
         axisY: [
             {
@@ -136,12 +137,16 @@ window.onload = function () {
             titleFontColor: 'red',
             labelFontColor: 'red',
             includeZero: true,
+            minimum: 0,
+            maximum: 500,
             },
             {
             title: 'Rate in GPM',
             labelFontColor: 'blue',
             titleFontColor: 'blue',
             includeZero: true,
+            minimum: 0,
+            maximum: 300,
             },
         ],
         data: [
@@ -169,7 +174,11 @@ window.onload = function () {
         ], 
         axisY2: [{
             title: 'Quality',
+            labelFontColor: 'green',
+            titleFontColor: 'green',
             includeZero: true,
+            minimum: 0,
+            maximum: 100,
         }], 
         // data: [      
         //  {

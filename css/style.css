@@ -83,7 +83,7 @@ h5 {
     grid-row: 2/3;
     justify-self: center;
     height: 40vh;
-    width: 90%;
+    width: 100%;
     background-color: darkslategray;
 }
 #inputs{
