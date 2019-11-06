@@ -14,6 +14,7 @@ h1 {
     color: white;
     font-size: 64px;
     font-weight: bold;
+    margin: 5px;
 }
 #navBar {
     display: flex;
@@ -27,6 +28,7 @@ h1 {
      background: url(/assets/production\ background.jpeg) no-repeat;
 }
 #levelButtons {
+    margin-top: 40px;
     font-size: 44px;
     font-family: 'Amatic SC', cursive;
     background-color: rgba(34, 26, 23, 0.623);
@@ -62,18 +64,19 @@ h1 {
     height: 85vh;
     /* width: 80%; */
     grid-template-columns:  1fr 1fr 1fr;
-    grid-template-rows: .2 .3fr 2fr .5fr 1fr;
+    grid-template-rows: .6fr 2.5fr .7fr .7fr .1fr;
     justify-content: space-around;
     opacity: 100%; 
 }
 h3 {
-
+    margin: 2px;
 }
 h4 {
     grid-column: 1/4;
-    grid-row: 2/3;
+    grid-row: 1/2;
     color: white;
     font-size: 36px;
+    margin: 5px;
 }
 h5 {
     grid-column: 1/4;
@@ -97,28 +100,36 @@ h5 {
 }
 
 
-
 .sliders{
+    display: grid;
     grid-column: 1/4;
-    grid-row: 3/5; 
     color: white;
-    font-size: 44px;
-    ÷: 4px solid black;
-    box-shadow: gold 3px;
-    align-content: flex-end;
+    font-size: 36px;
 }
+#pump0 {
+    display: grid;
+    grid-row: 3/4;
+    grid-column: 1/4;
+}
+#burner0 {
+    display: grid;
+    grid-row: 4/5;
+    grid-column: 1/4;
+
+}
+
 
 input {
     /* height: 110px; */
-    width: 75%;    
+    width: 66%;    
 }
 .sliders label {
     margin: 0px;
     padding: 0px;
-    height: 110px;
-    width: 390px;
-    /* text-align: top; */
-    vertical-align: middle;
+    /* height: 110px; */
+    /* width: 55%; */
+    text-align: center;
+    /* vertical-align: middle; */
     /* align-self: center; */
 }
 
