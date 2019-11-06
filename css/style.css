@@ -28,7 +28,7 @@ h1 {
 #indexBody {
      background: url(https://i.imgur.com/uxIxgQK.jpg) no-repeat;
 }
-#levelButtons {
+.levelButtons {
     margin-top: 40px;
     font-size: 44px;
     font-family: 'Amatic SC', cursive;
@@ -37,7 +37,7 @@ h1 {
     border-radius: 15px;
     color: white;
 }
-#levelButtons:hover {
+.levelButtons:hover {
     background-color: rgb(165, 115, 49);
     cursor: pointer;
 }
@@ -65,7 +65,7 @@ h1 {
     height: 85vh;
     /* width: 80%; */
     grid-template-columns:  1fr 1fr 1fr;
-    grid-template-rows: .6fr 2.5fr .7fr .7fr .1fr;
+    grid-template-rows: .6fr 2.5fr .7fr .7fr .7fr;
     justify-content: space-around;
     opacity: 100%; 
 }
@@ -116,7 +116,11 @@ h5 {
     display: grid;
     grid-row: 4/5;
     grid-column: 1/4;
-
+}
+#burner1 {
+    display: grid;
+    grid-row: 5/6;
+    grid-column: 1/4;
 }
 
 
