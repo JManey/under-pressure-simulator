@@ -17,8 +17,34 @@
     <h1>Refining Simulator</h1>
     <!-- <h2>Chart</h2> -->
     <h4>Directions: Use the pump and burner sliders to adjust flow rate and temperature to get the quality as close to 100% as you can.</h4>
-    <a href="level1.html"><button class="mainButtons levelButtons" id="level1">Play Level 1</button></a>
-    <a href="level1.html"><button class="mainButtons levelButtons" id="level2">Play Level 2</button></a>
     
+    <a href="#stage" onclick='init(1)'><button class="mainButtons levelButtons" id="level1">Play Level 1</button></a>
+    <a href="#stage" onclick='init(2)'><button class="mainButtons levelButtons" id="level2">Play Level 2</button></a>
+    
+
+
+    <div id="stage" class="container">
+        <h4></h4>
+        <h5 id='chartContainer'></h5>
+        <!-- <div id="inputs" class='input'>Inputs</div>
+        <div id="processes" class='process'>Processes</div>
+        <div id="outputs" class='output'>Outputs</div>
+        <div id='input0' class='inputVessel'>Input</div>
+        <div id='burner' class='processVessel'>burn</div>
+        <div id='cooler0' class='processVessel coolers'>cool</div>
+        <div id='output0' class='outputVessel'>Output</div> -->
+        <div class="sliders">
+            <label for="pump0">Pump Rate Adjust  </label>
+            <input type="range" id='pump0' min='0' max='100' step='1' class ='pump'></input>
+        </div>
+        <div class='sliders' id='sliderDiv'>
+            <label for="burner0">Temperature Adjust</label>
+            <input type="range" id='burner0' min='0' max='100' step='1' class= 'burner'></input>
+        </div>
+    </div>
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </body>
 </html>
