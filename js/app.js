@@ -9,15 +9,16 @@ const tempGradient = .28;
 let createdInputVessels = [];
 let currentLevel = 1;
 let newGasRate = 30;
-let newGasRate2 = 25;
+let newGasRate2 = 40;
 let newFluidPercent = 35;
 let fluidRate = newFluidPercent / 100 * 320;
 let maxGasRate = 100;
 let maxFluidRate = 100;
 let quality = null;
+let quality2 = null;
 let fluidTemp = tempGradient * (fluidRate / 100 * 320);
 let currentTemp = ((newGasRate / 100 * 400) - ((1 - tempGradient)) * fluidTemp);
-let currentTemp2 = ((newGasRate2 / 100 * 400) - ((1 - tempGradient)) * fluidTemp)*1.2;
+let currentTemp2 = ((newGasRate2 / 100 * 400) - (1 - tempGradient));
 
 /*----- cached element references -----*/
 let stage = document.getElementById('stage');
@@ -27,7 +28,7 @@ let outputVessel = document.getElementById('output0');
 let controls = document.getElementById('controls');
 let pump0 = document.getElementById('pump0');
 let burner0 = document.getElementById('burner0');
-let burner1 =document.getElementById('burner1');
+let burner01 =document.getElementById('burner1');
 let chart1 = document.querySelector('h5');
 let sliderDiv = document.getElementById('sliderDiv');
 
@@ -41,8 +42,8 @@ function adjustTemp() {
     checkQuality();
     return newGasRate;
 }
-function adjustTemp2() {
-    newGasRate2 = parseInt(burner1.value);
+function adjustTemps2() {
+    newGasRate2 = parseInt(document.getElementById('burner1').value);
     updateTemps2();
     checkQualityLvl2();
     return newGasRate2;
@@ -62,10 +63,12 @@ function adjustRate() {
 
 /*---model/data---*/
 function level1 () {
+    // location.reload(true);
     level1Chart();
     checkQuality();  
 }
 function level2 () {
+    // location.reload(true);
     checkQuality();
     checkQualityLvl2();
     level2Chart();
@@ -79,9 +82,8 @@ function updateTemps() {
     }
 }
 function updateTemps2() {
-    fluidTemp2 = tempGradient * (fluidRate / 100 * 252);
-    currentTemp2 = ((newGasRate / 100 * 400) - ((1 - tempGradient)) * fluidTemp);
-        currentTemp2 = ((newGasRate2 / 100 * 400) - ((1 - tempGradient)) * fluidTemp);
+    fluidTemp2 = (tempGradient) * (fluidRate / 100 * 252);
+    currentTemp2 = ((newGasRate2 / 100 * 400) + ((tempGradient)) * fluidTemp2);
     if(currentTemp2 <= 0) {
         currentTemp2 = 0;
     }
@@ -92,21 +94,25 @@ function checkQuality(){
     if(currentTemp > 140 && currentTemp < 160) {
         quality = 100 - Math.abs(currentTemp-150);
     } else {
-        quality = 100 - 10 - currentTemp * .3;
+        quality = 100 - 10 - (currentTemp * .2);
     }
+    if(quality < 1){
+        quality = 0;
+    }
+    if(quality2 === null) {
     checkQualityForWin();
     return quality;
+    }
 }
 function checkQualityLvl2() {
-    if(currentTemp > 140 && currentTemp < 160) {
-        quality = 100 - Math.abs(currentTemp-150);
-    } else {
-        quality = 100 - 10 - currentTemp * .3;
-    }
-    if(currentTemp2 > 196 && currentTemp2 < 186) {
-        quality = 100 - Math.abs(currentTemp2-191);
+    
+    if(currentTemp2 > 211 && currentTemp2 < 231) {
+        quality2 = 100 - Math.abs(currentTemp2-221);
     } else {
         quality2 = 100 - 10 - currentTemp2 * .2;
+    }
+    if(quality2 < 1){
+        quality2 = 0;
     }
 
     checkQualityForWin2();
@@ -133,18 +139,8 @@ function level2Slider() {
     label.textContent = "Temperature Adjust 2";
     label.for = input3;
     extraSliderDiv.appendChild(input3);
-    sliderDiv.appendChild(extraSliderDiv);
-    sliderDiv.appendChild(label);
-
-    stage.addEventListener('click', function(event){
-        // console.log(event.target.id);
-        if(event.target.id === 'burner1') {
-            adjustTemp();
-            updateTemps();
-            checkQuality();
-            checkQualityLvl2();
-        }
-    });
+    stage.appendChild(extraSliderDiv);
+    extraSliderDiv.appendChild(label);
 }
 
 
@@ -158,7 +154,7 @@ function level1Chart() {
         title :{
             text: "Current Production"
         },
-        backgroundColor: 'rgba(111,106,106,.2)',
+        backgroundColor: 'rgba(0,0,0,.6)',
         
         axisY: [
             {
@@ -269,11 +265,12 @@ function level2Chart() {
         var dpsBurner2 = [];
         var dpsPump = []; // pumpDataPoints
         var dpsQuality = []; 
+        var dpsQuality2 = [];
         var chart = new CanvasJS.Chart("chartContainer", {
             title :{
                 text: "Current Production"
             },
-            backgroundColor: 'rgba(111,106,106,.2)',
+            backgroundColor: 'rgba(0,0,0,.6)',
             
             axisY: [
                 {
@@ -321,6 +318,14 @@ function level2Chart() {
                         lineColor: "green",
                         markerColor: "green",
                         dataPoints: dpsQuality,
+                     },
+                     {
+                        type: "line",
+                        axisYType: 'secondary',
+                        markerType: "triangle",
+                        lineColor: "green",
+                        markerColor: "yellow",
+                        dataPoints: dpsQuality2,
                      },
             ], 
             axisY2: [{
@@ -389,6 +394,17 @@ function level2Chart() {
             if (dpsQuality.length > dataLength) {
                 dpsQuality.shift();
             }
+            for (var j = 0; j < count; j++) {
+                yVal = quality2;
+                dpsQuality2.push({
+                    x: xVal,
+                    y: yVal
+                });
+                xVal++;
+            }
+            if (dpsQuality.length > dataLength) {
+                dpsQuality.shift();
+            }
         
             chart.render();
         };
@@ -440,7 +456,15 @@ stage.addEventListener('click', function(event){
         // console.log(newFluidRate);
     }
 });
-
+stage.addEventListener('click', function(event){
+    // console.log(event.target.id);
+    if(event.target.id === 'burner1') {
+        adjustTemps2();
+        updateTemps2();
+        checkQuality();
+        checkQualityLvl2();
+    }
+});
 
 /*---controller---*/
 function init(num) {
