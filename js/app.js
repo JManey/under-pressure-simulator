@@ -75,17 +75,19 @@ function adjustRate() {
 //     let maxGasRate = 60;
 // }
 
-function navBars() {
-   let navBar = document.createElement('nav')
-   let homeButton = document.createElement('a');
-   navBar.appendChild(homeButton);
-   document.body.prepend('navBar');
-}
+// function navBars() {
+//     let navContainer = document.createElement('div')
+//    let navBar = document.createElement('nav')
+//    let homeButton = document.createElement('a');
+//    homeButton.innerHTML = `<a href="index.html"><button id="mainButtons">Home</button></a>`;
+//    navContainer.appendChild(navBar);
+//    navBar.appendChild(homeButton);
+//    document.body.prepend('navContainer');
+// }
 
 
 /*---model/data---*/
 function level1 () {
-    navBars();
     level1Chart();
     checkQuality();
    
@@ -244,7 +246,6 @@ function init(num) {
     } else return;
     
 }
-window.onload = navBars();
 // setInterval(checkQualityForWin, 1000 * 20);
 
 /*---ui controller---*/
