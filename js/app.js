@@ -31,7 +31,7 @@ let burner0 = document.getElementById('burner0');
 let burner01 =document.getElementById('burner1');
 let chart1 = document.querySelector('h5');
 let sliderDiv = document.getElementById('sliderDiv');
-
+let message = document.querySelector('h5');
 // let outPump0 = document.getElementById('outPump0');
 
 /*----- functions -----*/
@@ -94,7 +94,7 @@ function checkQuality(){
     if(currentTemp > 140 && currentTemp < 160) {
         quality = 100 - Math.abs(currentTemp-150);
     } else {
-        quality = 100 - 10 - (currentTemp * .2);
+        quality = 100 - 15 - (currentTemp * .4);
     }
     if(quality < 1){
         quality = 0;
@@ -109,7 +109,7 @@ function checkQualityLvl2() {
     if(currentTemp2 > 211 && currentTemp2 < 231) {
         quality2 = 100 - Math.abs(currentTemp2-221);
     } else {
-        quality2 = 100 - 10 - currentTemp2 * .2;
+        quality2 = 100 - 15 - currentTemp2 * .3;
     }
     if(quality2 < 1){
         quality2 = 0;
@@ -119,15 +119,33 @@ function checkQualityLvl2() {
 }
 function checkQualityForWin() {
     if(quality >= winQuality){
-        return alert('game is won');
+        message.textContent = 'Congrats You Won Level 1!!!'
+        message.style.color = 'blue';
+        message.style.fontSize = '75px';
+        let reset = document.createElement('button');
+        reset.textContent = "Reset";
+        reset.classList.add('levelButtons');
+        reset.onclick = refreshPage;
+        message.appendChild(reset);
+
     }   else return;
 }
 function checkQualityForWin2() {
     if(quality >= winQuality && quality2 >= winQuality2){
-        return alert('game is won');
+        message.textContent = 'Congrats You Won Level 2!!!'
+        message.style.color = 'blue';
+        message.style.fontSize = '75px';
+        let reset = document.createElement('button');
+        reset.textContent = "Reset";
+        reset.classList.add('levelButtons');
+        reset.onclick = refreshPage;
+        message.appendChild(reset);
+
     }   else return;
 }
-
+function refreshPage() {
+    window.location.reload();
+}
 function level2Slider() {
     let extraSliderDiv = document.createElement('div');
     extraSliderDiv.classList.add('sliders');
@@ -152,7 +170,7 @@ function level1Chart() {
     var dpsQuality = []; 
     var chart = new CanvasJS.Chart("chartContainer", {
         title :{
-            text: "Current Production"
+            text: ""
         },
         backgroundColor: 'rgba(0,0,0,.6)',
         
@@ -268,7 +286,7 @@ function level2Chart() {
         var dpsQuality2 = [];
         var chart = new CanvasJS.Chart("chartContainer", {
             title :{
-                text: "Current Production"
+                text: ""
             },
             backgroundColor: 'rgba(0,0,0,.6)',
             
@@ -476,15 +494,3 @@ function init(num) {
     
 }
 
-// window.addEventListener('click', function(event){
-//     if(event.target.id === 'level1') {
-//         window.onload(init(1));
-//         return;
-//         // level1();
-//     } else if(event.target.id === 'level2') {
-//         window.onload(init(2));
-//         return;
-//         // level2();
-//     }
-
-// })
