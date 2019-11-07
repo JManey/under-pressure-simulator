@@ -1,11 +1,11 @@
 /*----- constants -----*/
-// var Chart = require('chart.js');
-// const InputChem1 = {};
+
 const winQuality = 95;
 const winQuality2 = 95;
 const tempGradient = .28;
 
 /*----- app's state (variables) -----*/
+
 let createdInputVessels = [];
 let currentLevel = 1;
 let newGasRate = 30;
@@ -21,6 +21,7 @@ let currentTemp = ((newGasRate / 100 * 400) - ((1 - tempGradient)) * fluidTemp);
 let currentTemp2 = ((newGasRate2 / 100 * 400) - (1 - tempGradient));
 
 /*----- cached element references -----*/
+
 let stage = document.getElementById('stage');
 let inputVessel = document.getElementById('inputs');
 let processVessel = document.getElementById('processes');
@@ -55,13 +56,6 @@ function adjustRate() {
     checkQuality();
     return newFluidPercent;
 }
-
-// function event1() {
-//     if(newGasRate > 60) {newGasRate = 60;}
-//     let maxGasRate = 60;
-// }
-
-/*---model/data---*/
 function level1 () {
     // location.reload(true);
     level1Chart();
@@ -162,9 +156,9 @@ function level2Slider() {
     extraSliderDiv.appendChild(label);
 }
 
+/*---model/data---*/
+/*---dynamic charts---*/
 
-//////////////add a dynamic chart
-//start when page loads
 function level1Chart() {
     var dps = []; // dataPoints
     var dpsPump = []; // pumpDataPoints
@@ -228,7 +222,7 @@ function level1Chart() {
     
     var xVal = 0;
     var yVal = 100; 
-    var updateInterval = 2000;
+    var updateInterval = 1000;
     var dataLength = 20; // number of dataPoints visible at any point
     
     var updateChart = function (count) {
@@ -360,7 +354,7 @@ function level2Chart() {
         
         var xVal = 0;
         var yVal = 100; 
-        var updateInterval = 2000;
+        var updateInterval = 1000;
         var dataLength = 20; // number of dataPoints visible at any point
         
         var updateChart = function (count) {
@@ -435,27 +429,19 @@ function level2Chart() {
     //////////////end chart stuff level 2
 
 
-// setInterval(checkQualityForWin, 1000 * 20);
 
 /*---ui controller---*/
-//generate level 1
-//extra slider for level 2
-
+function init(num) {
+    if(num === 1){
+        level1();
+    } else if(num === 2) {
+        level2();
+    } else return;
+    
+}
 
 /*----- event listeners -----*/
-//input for burner0 temp
-// window.addEventListener('click', function(event){
-//     if(event.target.id === 'level1') {
-//         init(1);
-//         return;
-//         // level1();
-//     } else if(event.target.id === 'level2') {
-//         init(2);
-//         return;
-//         // level2();
-//     }
-
-// })
+//burner0 temp
 stage.addEventListener('click', function(event){
     // console.log(event.target.id);
     if(event.target.id === 'burner0') {
@@ -464,7 +450,6 @@ stage.addEventListener('click', function(event){
         checkQuality();
     }
 });
-
 //input for flow rate
 stage.addEventListener('click', function(event){
     // console.log(event.target.id);
@@ -475,6 +460,7 @@ stage.addEventListener('click', function(event){
         // console.log(newFluidRate);
     }
 });
+//get burner1 temp
 stage.addEventListener('click', function(event){
     // console.log(event.target.id);
     if(event.target.id === 'burner1') {
@@ -484,14 +470,3 @@ stage.addEventListener('click', function(event){
         checkQualityLvl2();
     }
 });
-
-/*---controller---*/
-function init(num) {
-    if(num === 1){
-        level1();
-    } else if(num === 2) {
-        level2();
-    } else return;
-    
-}
-

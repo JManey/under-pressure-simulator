@@ -1,19 +1,18 @@
-☐ This is a game about refining one chemical into another, by maintaining equilibrium.
+☐ This is a game about refining one chemical into another, by adjusting rate and temperature.
 
-☐ Screenshot(s): ![alt text](https://i.imgur.com/ZKSyg2J.jpg "Under Pressure Simulator")
-![alt text](https://i.imgur.com/UZafEGX.png "Level 1 Mock Up")
+☐ Screenshot(s): ![alt text](https://i.imgur.com/1M5J1hv.jpg "Under Pressure Simulator")
+![alt text](https://i.imgur.com/LNcuQuG.jpg "Level 1 Mock Up")
 
-☐ Technologies Used: JavaScript, HTML, and CSS
+☐ Technologies Used: JavaScript, HTML, CanvasJS, and CSS
 
 ☐ Getting Started: 
-    Upon starting the game, the process will be in equilibrium, shortly thereafter events may occur to disrupt the process.  Your job is to restore equilibrium to maintain the quality and quantity of the output product.
+    Upon starting the game, the process will already be started.  Your job is to use adjust the sliders to get the output quality as close as you can to 100%.
 
 ☐ User stories:
 * As a user, I want to see direction for how to play the game        quickly.
 * As a user, I want easy to use inputs, because I don't time to      learn a complicated system.
 * As a user, I want to see a score or time, because I'm              competitive.
 
-☐ Next Steps: Make level 1:
-    what is the win condition: output quality > 95% && rate > 70%
-    what is the event? heat is limited to 60% due to supply disruption
-    what is the output quality? need a display
+☐ Next Steps: Base Game is Complete.
+    
+☐ Future addons: Make a leaderboard to track top scores based on quality and flowrate.
