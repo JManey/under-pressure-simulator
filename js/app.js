@@ -33,7 +33,6 @@ let burner01 =document.getElementById('burner1');
 let chart1 = document.querySelector('h5');
 let sliderDiv = document.getElementById('sliderDiv');
 let message = document.querySelector('h5');
-// let outPump0 = document.getElementById('outPump0');
 
 /*----- functions -----*/
 
@@ -57,12 +56,10 @@ function adjustRate() {
     return newFluidPercent;
 }
 function level1 () {
-    // location.reload(true);
     level1Chart();
     checkQuality();  
 }
 function level2 () {
-    // location.reload(true);
     checkQuality();
     checkQualityLvl2();
     level2Chart();
