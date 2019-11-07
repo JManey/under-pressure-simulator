@@ -6,8 +6,6 @@ const tempGradient = .28;
 
 /*----- app's state (variables) -----*/
 
-let createdInputVessels = [];
-let currentLevel = 1;
 let newGasRate = 30;
 let newGasRate2 = 40;
 let newFluidPercent = 35;
@@ -23,9 +21,6 @@ let currentTemp2 = ((newGasRate2 / 100 * 400) - (1 - tempGradient));
 /*----- cached element references -----*/
 
 let stage = document.getElementById('stage');
-let inputVessel = document.getElementById('inputs');
-let processVessel = document.getElementById('processes');
-let outputVessel = document.getElementById('output0');
 let controls = document.getElementById('controls');
 let pump0 = document.getElementById('pump0');
 let burner0 = document.getElementById('burner0');
@@ -63,7 +58,9 @@ function level2 () {
     checkQuality();
     checkQualityLvl2();
     level2Chart();
-    level2Slider();
+    if(document.getElementById('burner1') === null){
+        level2Slider();
+    }
 }
 function updateTemps() {
     fluidTemp = tempGradient * (fluidRate / 100 * 252);
@@ -113,6 +110,7 @@ function checkQualityForWin() {
         message.textContent = 'Congrats You Won Level 1!!!'
         message.style.color = 'blue';
         message.style.fontSize = '75px';
+        //reset button when you win
         let reset = document.createElement('button');
         reset.textContent = "Reset";
         reset.classList.add('levelButtons');
@@ -126,6 +124,7 @@ function checkQualityForWin2() {
         message.textContent = 'Congrats You Won Level 2!!!'
         message.style.color = 'blue';
         message.style.fontSize = '75px';
+        //reset button if you win
         let reset = document.createElement('button');
         reset.textContent = "Reset";
         reset.classList.add('levelButtons');
@@ -138,6 +137,7 @@ function refreshPage() {
     scrollTo(0,0);
     window.location.reload();
 }
+    ////create and insert adjustable slider only for level 2
 function level2Slider() {
     let extraSliderDiv = document.createElement('div');
     extraSliderDiv.classList.add('sliders');
@@ -269,7 +269,7 @@ function level1Chart() {
     
     }
 //////////////end chart stuff level 1
-
+///////////// create chart 2
 function level2Chart() {
         var dps = []; // dataPoints
         var dpsBurner2 = [];
@@ -306,7 +306,7 @@ function level2Chart() {
                 axisYIndex: 0,
                 lineColor: "red",
                 markerColor: "red",
-                dataPoints: dps,
+                dataPoints: dps, /// <--dps is the array containing data for the graph
                 },
                 {
                     type: "line",
@@ -351,7 +351,7 @@ function level2Chart() {
         
         var xVal = 0;
         var yVal = 100; 
-        var updateInterval = 1000;
+        var updateInterval = 1000; //<--graph update speed = 1sec
         var dataLength = 20; // number of dataPoints visible at any point
         
         var updateChart = function (count) {
@@ -359,7 +359,7 @@ function level2Chart() {
             count = count || 1;
         
             for (var j = 0; j < count; j++) {
-                yVal = currentTemp;
+                yVal = currentTemp; // <--- assign data from game to yVal and push it to the dps array
                 dps.push({
                     x: xVal,
                     y: yVal
@@ -425,9 +425,8 @@ function level2Chart() {
         }
     //////////////end chart stuff level 2
 
-
-
 /*---ui controller---*/
+
 function init(num) {
     if(num === 1){
         level1();
