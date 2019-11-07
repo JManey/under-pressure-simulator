@@ -94,7 +94,7 @@ function checkQuality(){
     if(currentTemp > 140 && currentTemp < 160) {
         quality = 100 - Math.abs(currentTemp-150);
     } else {
-        quality = 100 - 15 - (currentTemp * .4);
+        quality = 100 - (Math.abs(currentTemp-150)*1.16);
     }
     if(quality < 1){
         quality = 0;
@@ -109,7 +109,7 @@ function checkQualityLvl2() {
     if(currentTemp2 > 211 && currentTemp2 < 231) {
         quality2 = 100 - Math.abs(currentTemp2-221);
     } else {
-        quality2 = 100 - 15 - currentTemp2 * .3;
+        quality2 = 100 - (Math.abs(currentTemp2-221) * 1.27);
     }
     if(quality2 < 1){
         quality2 = 0;
@@ -144,6 +144,7 @@ function checkQualityForWin2() {
     }   else return;
 }
 function refreshPage() {
+    scrollTo(0,0);
     window.location.reload();
 }
 function level2Slider() {
