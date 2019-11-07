@@ -1,4 +1,5 @@
 ☐ This is a game about refining one chemical into another, by adjusting rate and temperature.
+[Try out the game on Surge](http://refinery-simulator.surge.sh/index.html)
 
 ☐ Screenshot(s): ![alt text](https://i.imgur.com/1M5J1hv.jpg "Under Pressure Simulator")
 ![alt text](https://i.imgur.com/LNcuQuG.jpg "Level 1 Mock Up")
