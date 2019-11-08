@@ -8,13 +8,11 @@
 
 ☐ Getting Started: 
     Upon starting the game, the process will already be started.  Your job is to use adjust the sliders to get the output quality as close as you can to 100%.
-    [Try out the game on Surge](http://refinery-simulator.surge.sh/index.html)
+    [Try out the game on Surge](http://refinery-simulator.surge.sh/index.html){:target="_blank"}
 
 ☐ User stories:
 * As a user, I want to see direction for how to play the game        quickly.
 * As a user, I want easy to use inputs, because I don't time to      learn a complicated system.
 * As a user, I want to see see my progress/tell if I won, because I'm competitive.
-
-☐ Next Steps: Base Game is Complete.
     
-☐ Future addons/spin-offs:  I think this game would be even better if made into a chemistry experiment.  I would keep the temperature controls to operate a bunsen burner.  And adjust the flow control to "pour" chemical into another chemical.  Add a titrating tube that you would click per drop.  All of this would need to be animated/click and drag.  Plus it should be realistic.  The titrating chemicals such as silver nitrate and Phenolphthalein should react
+☐ Next Steps => Future addons/spin-offs:  I think this game would be even better if made into a chemistry experiment.  I would keep the temperature controls to operate a bunsen burner.  And adjust the flow control to "pour" chemical into another chemical.  Add a titrating tube that you would click per drop.  All of this would need to be animated/click and drag.  Plus it should be realistic.  The titrating chemicals such as silver nitrate and Phenolphthalein should react
