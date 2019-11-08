@@ -47,7 +47,9 @@ function adjustRate() {
     newFluidPercent = parseInt(pump0.value);
     fluidRate = newFluidPercent / 100 * 320;
     updateTemps();
+    updateTemps2();
     checkQuality();
+    checkQualityLvl2();
     return newFluidPercent;
 }
 function level1 () {
@@ -63,15 +65,15 @@ function level2 () {
     }
 }
 function updateTemps() {
-    fluidTemp = tempGradient * (fluidRate / 100 * 252);
+    fluidTemp = tempGradient * (fluidRate / 100 * 320);
     currentTemp = ((newGasRate / 100 * 400) - ((1 - tempGradient)) * fluidTemp);
     if(currentTemp <= 0) {
         currentTemp = 0;
     }
 }
 function updateTemps2() {
-    fluidTemp2 = (tempGradient) * (fluidRate / 100 * 252);
-    currentTemp2 = ((newGasRate2 / 100 * 400) + ((tempGradient)) * fluidTemp2);
+    fluidTemp2 = (tempGradient-.06) * (fluidRate / 100 * 520);
+    currentTemp2 = ((newGasRate2 / 100 * 400) + ((1-tempGradient) * fluidTemp2));
     if(currentTemp2 <= 0) {
         currentTemp2 = 0;
     }
