@@ -34,12 +34,15 @@ let message = document.querySelector('h5');
 function adjustTemp() {
     newGasRate = parseInt(burner0.value);
     updateTemps();
+    updateTemps2();
     checkQuality();
+    checkQualityLvl2();
     return newGasRate;
 }
 function adjustTemps2() {
     newGasRate2 = parseInt(document.getElementById('burner1').value);
     updateTemps2();
+    checkQuality();
     checkQualityLvl2();
     return newGasRate2;
 }
@@ -88,7 +91,7 @@ function checkQuality(){
     if(quality < 1){
         quality = 0;
     }
-    if(quality2 === null) {
+    if(quality2 === null || quality2 === 0) {
     checkQualityForWin();
     return quality;
     }
@@ -157,12 +160,12 @@ function level2Slider() {
 function level1Chart() {
     var dps = []; // dataPoints
     var dpsPump = []; // pumpDataPoints
-    var dpsQuality = []; 
+    var dpsQuality = []; // quality data
     var chart = new CanvasJS.Chart("chartContainer", {
         title :{
             text: ""
         },
-        backgroundColor: 'rgba(0,0,0,.6)',
+        backgroundColor: 'rgba(0,0,0,.6)', // <--make background slighty transparent, the default is white
         
         axisY: [
             {
@@ -205,7 +208,7 @@ function level1Chart() {
                     dataPoints: dpsQuality,
                  },
         ], 
-        axisY2: [{
+        axisY2: [{ // <-- axisY2 is the right side y axis
             title: 'Quality',
             labelFontColor: 'green',
             titleFontColor: 'green',
@@ -225,7 +228,7 @@ function level1Chart() {
         count = count || 1;
     
         for (var j = 0; j < count; j++) {
-            yVal = currentTemp;
+            yVal = currentTemp; // <--temp1
             dps.push({
                 x: xVal,
                 y: yVal
@@ -237,7 +240,7 @@ function level1Chart() {
             dps.shift();
         }
         for (var j = 0; j < count; j++) {
-            yVal = fluidRate;
+            yVal = fluidRate; // <--fluid rate
             dpsPump.push({
                 x: xVal,
                 y: yVal
@@ -248,7 +251,7 @@ function level1Chart() {
             dpsPump.shift();
         }
         for (var j = 0; j < count; j++) {
-            yVal = quality;
+            yVal = quality; //<--quality
             dpsQuality.push({
                 x: xVal,
                 y: yVal
