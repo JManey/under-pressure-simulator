@@ -77,7 +77,6 @@ function updateTemps2() {
     if(currentTemp2 <= 0) {
         currentTemp2 = 0;
     }
-
     return currentTemp2;
 }
 function checkQuality(){
@@ -104,7 +103,6 @@ function checkQualityLvl2() {
     if(quality2 < 1){
         quality2 = 0;
     }
-
     checkQualityForWin2();
 }
 function checkQualityForWin() {
@@ -118,7 +116,6 @@ function checkQualityForWin() {
         reset.classList.add('levelButtons');
         reset.onclick = refreshPage;
         message.appendChild(reset);
-
     }   else return;
 }
 function checkQualityForWin2() {
@@ -132,14 +129,13 @@ function checkQualityForWin2() {
         reset.classList.add('levelButtons');
         reset.onclick = refreshPage;
         message.appendChild(reset);
-
     }   else return;
 }
 function refreshPage() {
     scrollTo(0,0);
     window.location.reload();
 }
-    ////create and insert adjustable slider only for level 2
+////create and insert adjustable slider only for level 2
 function level2Slider() {
     let extraSliderDiv = document.createElement('div');
     extraSliderDiv.classList.add('sliders');
@@ -435,7 +431,6 @@ function init(num) {
     } else if(num === 2) {
         level2();
     } else return;
-    
 }
 
 /*----- event listeners -----*/
@@ -450,17 +445,14 @@ stage.addEventListener('click', function(event){
 });
 //input for flow rate
 stage.addEventListener('click', function(event){
-    // console.log(event.target.id);
     if(event.target.id === 'pump0') {
         adjustRate();
         updateTemps();
         checkQuality();
-        // console.log(newFluidRate);
     }
 });
 //get burner1 temp
 stage.addEventListener('click', function(event){
-    // console.log(event.target.id);
     if(event.target.id === 'burner1') {
         adjustTemps2();
         updateTemps2();
