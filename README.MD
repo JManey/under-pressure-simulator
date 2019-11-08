@@ -8,7 +8,7 @@
 
 ☐ Getting Started: 
     Upon starting the game, the process will already be started.  Your job is to use adjust the sliders to get the output quality as close as you can to 100%.
-    [Try out the game on Surge](http://refinery-simulator.surge.sh/index.html){:target="_blank"}
+    [Try out the game on Surge](http://refinery-simulator.surge.sh/index.html)
 
 ☐ User stories:
 * As a user, I want to see direction for how to play the game        quickly.
